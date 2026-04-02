@@ -1,3 +1,40 @@
+## Solution
+
+A simple FastAPI HTTP server that returns a GitHub user's public gists at `/<username>`.
+
+### Run with Docker (recommended)
+
+```bash
+docker build -t gists-api .
+docker run -p 8080:8080 gists-api
+```
+
+Then query it:
+
+```bash
+curl http://localhost:8080/octocat
+```
+
+### Run locally
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+uvicorn app:app --port 8080
+```
+
+### Run tests
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+pytest test_app.py -v
+```
+
+---
+
 ## :warning: Please read these instructions carefully and entirely first
 * Clone this repository to your local machine.
 * Use your IDE of choice to complete the assignment.
