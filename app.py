@@ -19,6 +19,8 @@ async def get_user_gists(username: str):
         )
     if response.status_code == 404:
         raise HTTPException(status_code=404, detail=f"User '{username}' not found")
+    if response.status_code == 429:
+        raise HTTPException(status_code=429, detail=f"Rate limit exceeded for user '{username}'")
     if response.is_error:
-        raise HTTPException(status_code=502, detail="GitHub API error")
+        raise HTTPException(response.status_code, detail=f"User '{username}' GitHub API error")
     return response.json()
